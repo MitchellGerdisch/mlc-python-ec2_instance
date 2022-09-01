@@ -14,8 +14,9 @@
     },
     "files": [
         "index.ts",
+        "mlc/index.ts",
+        "mlc/wpInstance.ts",
         "provider.ts",
-        "staticPage.ts",
         "utilities.ts"
     ]
 }

@@ -1,6 +1,6 @@
-import * as xyz from "@pulumi/xyz";
+import * as wpinstance from "@pulumi/wpinstance";
 
-const page = new xyz.StaticPage("page", {
+const page = new wpinstance.StaticPage("page", {
     indexContent: "<html><body><p>Hello world!</p></body></html>",
 });
 

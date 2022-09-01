@@ -1,6 +1,6 @@
 VERSION         := 0.0.1
 
-PACK            := xyz
+PACK            := wpinstance
 PROJECT         := github.com/pulumi/pulumi-${PACK}
 
 PROVIDER        := pulumi-resource-${PACK}
@@ -111,7 +111,7 @@ build_python_sdk:: gen_python_sdk
 
 # Output tarballs for plugin distribution. Example use:
 #
-# pulumi plugin install resource xyz 0.0.1 --file pulumi-resource-xyz-v0.0.1-linux-amd64.tar.gz
+# pulumi plugin install resource wpinstance 0.0.1 --file pulumi-resource-wpinstance-v0.0.1-linux-amd64.tar.gz
 
 dist::	build_provider
 	rm -rf dist

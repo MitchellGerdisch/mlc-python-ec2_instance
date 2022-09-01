@@ -2,7 +2,7 @@ from distutils.core import setup
 import os.path
 
 
-PKG = 'xyz_provider'
+PKG = 'wpinstance_provider'
 
 
 def read_version():
@@ -14,7 +14,7 @@ def read_version():
 setup(
     name=PKG,
     version=read_version(),
-    description='XYZ Pulumi Provider',
+    description='wpinstance Pulumi Provider',
     packages=[PKG],
     package_data={PKG: ['py.typed', 'VERSION', 'schema.json']},
     zip_safe=False,

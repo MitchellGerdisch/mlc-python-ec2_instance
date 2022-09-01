@@ -18,14 +18,14 @@ from pulumi import Inputs, ResourceOptions
 from pulumi.provider import ConstructResult
 import pulumi.provider as provider
 
-import xyz_provider
-from xyz_provider.staticpage import StaticPage, StaticPageArgs
+import wpinstance_provider
+from wpinstance_provider.wpinstance import WpInstanceArgs, WpInstance
 
 
 class Provider(provider.Provider):
 
     def __init__(self) -> None:
-        super().__init__(xyz_provider.__version__, xyz_provider.__schema__)
+        super().__init__(wpinstance_provider.__version__, wpinstance_provider.__schema__)
 
     def construct(self,
                   name: str,
@@ -33,23 +33,22 @@ class Provider(provider.Provider):
                   inputs: Inputs,
                   options: Optional[ResourceOptions] = None) -> ConstructResult:
 
-        if resource_type == 'xyz:index:StaticPage':
-            return _construct_static_page(name, inputs, options)
+        if resource_type == 'wpinstance:mlc:WpInstance':
+            return _deploy_wpinstance(name, inputs, options)
 
         raise Exception(f'Unknown resource type {resource_type}')
 
 
-def _construct_static_page(name: str,
+def _deploy_wpinstance(name: str,
                            inputs: Inputs,
                            options: Optional[ResourceOptions] = None) -> ConstructResult:
 
     # Create the component resource.
-    static_page = StaticPage(name, StaticPageArgs.from_inputs(inputs), dict(inputs), options)
+    wpinstance = WpInstance(name, WpInstanceArgs.from_inputs(inputs), dict(inputs), options)
 
     # Return the component resource's URN and outputs as its state.
     return provider.ConstructResult(
-        urn=static_page.urn,
+        urn=wpinstance.urn,
         state={
-            'bucket': static_page.bucket,
-            'websiteUrl': static_page.website_url
+            'wpinstance_ip': wpinstance.wpinstance_ip
         })

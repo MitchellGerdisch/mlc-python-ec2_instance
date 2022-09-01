@@ -6,30 +6,20 @@ import * as utilities from "./utilities";
 
 // Export members:
 export * from "./provider";
-export * from "./staticPage";
 
-// Import resources to register:
-import { StaticPage } from "./staticPage";
+// Export sub-modules:
+import * as mlc from "./mlc";
 
-const _module = {
-    version: utilities.getVersion(),
-    construct: (name: string, type: string, urn: string): pulumi.Resource => {
-        switch (type) {
-            case "xyz:index:StaticPage":
-                return new StaticPage(name, <any>undefined, { urn })
-            default:
-                throw new Error(`unknown resource type ${type}`);
-        }
-    },
+export {
+    mlc,
 };
-pulumi.runtime.registerResourceModule("xyz", "index", _module)
 
 import { Provider } from "./provider";
 
-pulumi.runtime.registerResourcePackage("xyz", {
+pulumi.runtime.registerResourcePackage("wpinstance", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
-        if (type !== "pulumi:providers:xyz") {
+        if (type !== "pulumi:providers:wpinstance") {
             throw new Error(`unknown provider type ${type}`);
         }
         return new Provider(name, <any>undefined, { urn });

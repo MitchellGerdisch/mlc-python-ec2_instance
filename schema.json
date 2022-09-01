@@ -1,30 +1,40 @@
 {
-    "name": "xyz",
+    "name": "wpinstance",
     "resources": {
-        "xyz:index:StaticPage": {
+        "wpinstance:mlc:WpInstance": {
             "isComponent": true,
             "inputProperties": {
-                "indexContent": {
+                "publicKey": {
                     "type": "string",
-                    "description": "The HTML content for index.html."
+                    "description": "SSH public key for accessing wordpress instance."
+                },
+                "instanceType": {
+                    "type": "string",
+                    "description": "Instance type to use for wordpress instance."
+                },
+                "vpcId": {
+                    "type": "string",
+                    "description": "VPC in which to deploy."
+                },
+                "subnetId": {
+                    "type": "string",
+                    "description": "Subnet in which to deploy."
                 }
             },
             "requiredInputs": [
-                "indexContent"
+                "publicKey", 
+                "instanceType", 
+                "vpcId",
+                "subnetId"
             ],
             "properties": {
-                "bucket": {
-                    "$ref": "/aws/v4.0.0/schema.json#/resources/aws:s3%2Fbucket:Bucket",
-                    "description": "The bucket resource."
-                },
-                "websiteUrl": {
+                "wpinstanceIp": {
                     "type": "string",
-                    "description": "The website URL."
+                    "description": "The wordpress instance IP address."
                 }
             },
             "required": [
-                "bucket",
-                "websiteUrl"
+                "wpinstanceIp"
             ]
         }
     },
@@ -37,7 +47,7 @@
         },
         "go": {
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-xyz/sdk/go/xyz"
+            "importBasePath": "github.com/pulumi/pulumi-wpinstance/sdk/go/wpinstance"
         },
         "nodejs": {
             "dependencies": {

@@ -1,35 +1,41 @@
-# xyz Pulumi Component Provider (Python)
+# Pulumi Component Boilerplate (Python)
 
-This repo builds a working Pulumi component provider in Python. You
-can use it as boilerplate for creating your own provider. Simply
-search-replace `xyz` with your chosen name.
+This repository builds a working Pulumi component in Python. You
+can use it as a boilerplate for creating your own component provider by search-replacing `wpinstance` with your chosen name.
+
+### Background
+This repository is part of the [guide for authoring and publishing a Pulumi Package](https://www.pulumi.com/docs/guides/pulumi-packages/how-to-author).
+
+Learn about the concepts behind [Pulumi Packages](https://www.pulumi.com/docs/guides/pulumi-packages/#pulumi-packages) and, more specifically, [Pulumi Components](https://www.pulumi.com/docs/intro/concepts/resources/components/)
+
+## Sample wpinstance Component Provider
 
 Pulumi component providers make
 [component resources](https://www.pulumi.com/docs/intro/concepts/resources/#components)
 available to Pulumi code in all supported programming languages.
-Specifically, `xyz` component provider defines an example `StaticPage`
+Specifically, `wpinstance` component provider defines an example `StaticPage`
 component resource that provisions a public AWS S3 HTML page.
 
 The important pieces include:
 
 - [schema.json](schema.json) declaring the `StaticPage` interface
 
-- [xyz_provider](provider/cmd/pulumi-resource-xyz/xyz_provider/provider.py) package
+- [wpinstance_provider](provider/cmd/pulumi-resource-wpinstance/wpinstance_provider/provider.py) package
   implementing `StaticPage` using typical Pulumi Python code
 
 From here, the build generates:
 
 - SDKs for Python, Go, .NET, and Node (under `sdk/`)
 
-- `pulumi-resource-xyz` Pulumi plugin (under `bin/`)
+- `pulumi-resource-wpinstance` Pulumi plugin (under `bin/`)
 
 Users can deploy `StaticPage` instances in their language of choice,
 as seen in the [TypeScript example](examples/simple/index.ts). Only
 two things are needed to run `pulumi up`:
 
-- the code needs to reference the `xyz` SDK package
+- the code needs to reference the `wpinstance` SDK package
 
-- `pulumi-resource-xyz` needs to be on `PATH` for `pulumi` to find it
+- `pulumi-resource-wpinstance` needs to be on `PATH` for `pulumi` to find it
 
 
 ## Prerequisites
@@ -54,13 +60,13 @@ make generate
 make build
 make install
 
-# Ensure the pulumi-provider-xyz script is on PATH (for testing)
+# Ensure the pulumi-provider-wpinstance script is on PATH (for testing)
 $ export PATH=$PATH:$PWD/bin
 
 # Test Node.js SDK
 $ cd examples/simple
 $ yarn install
-$ yarn link @pulumi/xyz
+$ yarn link @pulumi/wpinstance
 $ pulumi stack init test
 $ pulumi config set aws:region us-east-1
 $ pulumi up
@@ -69,7 +75,7 @@ $ pulumi up
 
 ## Naming
 
-The `xyz` plugin must be packaged as a `pulumi-resource-xyz` script or
+The `wpinstance` plugin must be packaged as a `pulumi-resource-wpinstance` script or
 binary (in the format `pulumi-resource-<provider>`).
 
 While the plugin must follow this naming convention, the SDK package
@@ -77,43 +83,46 @@ naming can be custom.
 
 ## Packaging
 
-The `xyz` plugin can be packaged as a tarball for distribution:
+The `wpinstance` plugin can be packaged as a tarball for distribution:
 
 ```bash
 $ make dist
 
 $ ls dist/
-pulumi-resource-xyz-v0.0.1-darwin-amd64.tar.gz
-pulumi-resource-xyz-v0.0.1-windows-amd64.tar.gz
-pulumi-resource-xyz-v0.0.1-linux-amd64.tar.gz
+pulumi-resource-wpinstance-v0.0.1-darwin-amd64.tar.gz
+pulumi-resource-wpinstance-v0.0.1-windows-amd64.tar.gz
+pulumi-resource-wpinstance-v0.0.1-linux-amd64.tar.gz
 ```
 
 Users can install the plugin with:
 
 ```bash
-pulumi plugin install resource xyz 0.0.1 --file dist/pulumi-resource-xyz-v0.0.1-darwin-amd64.tar.gz
+pulumi plugin install resource wpinstance 0.0.1 --file dist/pulumi-resource-wpinstance-v0.0.1-darwin-amd64.tar.gz
 ```
 
-The tarball only includes the `xyz_provider` sources. During the
+The tarball only includes the `wpinstance_provider` sources. During the
 installation phase, `pulumi` will use the user's system Python command
 to rebuild a virtual environment and restore dependencies (such as
 Pulumi SDK).
 
 TODO explain custom server hosting in more detail.
 
+## Configuring CI and releases
+
+1. Follow the instructions laid out in the [deployment templates](./deployment-templates/README-DEPLOYMENT.md).
 
 ## StaticPage Example
 
 ### Schema
 
 The component resource's type [token](schema.json#L4)
-is `xyz:index:StaticPage` in the
-format of `<package>:<module>:<type>`. In this case, it's in the `xyz`
+is `wpinstance:index:StaticPage` in the
+format of `<package>:<module>:<type>`. In this case, it's in the `wpinstance`
 package and `index` module. This is the same type token passed inside
 the implementation of `StaticPage` in
-[staticpage.py](provider/cmd/pulumi-resource-xyz/xyz_provider/staticpage.py#L46),
+[staticpage.py](provider/cmd/pulumi-resource-wpinstance/wpinstance_provider/staticpage.py#L46),
 and also the same token referenced in `construct` in
-[provider.py](provider/cmd/pulumi-resource-xyz/xyz_provider/provider.py#L36).
+[provider.py](provider/cmd/pulumi-resource-wpinstance/wpinstance_provider/provider.py#L36).
 
 This component has a required `indexContent` input property typed as
 `string`, and two required output properties: `bucket` and
@@ -129,7 +138,7 @@ the .NET, Node.js, and Python SDKs, dependencies are specified in the
 ### Implementation
 
 The key method to implement is
-[construct](provider/cmd/pulumi-resource-xyz/xyz_provider/provider.py#L36)
+[construct](provider/cmd/pulumi-resource-wpinstance/wpinstance_provider/provider.py#L36)
 on the `Provider` class. It receives `Inputs` representing arguments the user passed,
 and returns a `ConstructResult` with the new StaticPage resource `urn` an state.
 
