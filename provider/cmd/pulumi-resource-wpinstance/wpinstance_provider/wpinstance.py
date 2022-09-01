@@ -43,8 +43,8 @@ class WpInstanceArgs:
 
     def __init__(self,
                  # name the arguments and their types (e.g. str, bool, etc)
-                 public_key: pulumi.Input[str], 
-                 instance_type: pulumi.Input[str],
+                 public_key: str,
+                 instance_type: str,
                  vpc_id: pulumi.Input[str],
                  subnet_id: pulumi.Input[str]) -> None:
 
