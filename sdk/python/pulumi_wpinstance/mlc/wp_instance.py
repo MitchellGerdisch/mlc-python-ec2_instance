@@ -150,6 +150,7 @@ class WpInstance(pulumi.ComponentResource):
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
             __props__.__dict__["vpc_id"] = vpc_id
+            __props__.__dict__["secrule_id"] = None
             __props__.__dict__["wpinstance_ip"] = None
         super(WpInstance, __self__).__init__(
             'wpinstance:mlc:WpInstance',
@@ -157,6 +158,14 @@ class WpInstance(pulumi.ComponentResource):
             __props__,
             opts,
             remote=True)
+
+    @property
+    @pulumi.getter(name="secruleId")
+    def secrule_id(self) -> pulumi.Output[str]:
+        """
+        Id for instance security group rule.
+        """
+        return pulumi.get(self, "secrule_id")
 
     @property
     @pulumi.getter(name="wpinstanceIp")

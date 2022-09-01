@@ -19,15 +19,34 @@ from pulumi import Inputs, ResourceOptions
 from pulumi_aws import ec2
 import pulumi
 
-
 class WpInstanceArgs:
+
+    index_content: pulumi.Input[str]
+    """The HTML content for index.html."""
+    public_key: pulumi.Input[str]
+    """The public key for accessing the instance."""
+    instance_type: pulumi.Input[str]
+    """The instance size."""
+    vpc_id: pulumi.Input[str]
+    """The VPC ID in which to deploy the instance."""
+    subnet_id: pulumi.Input[str]
+    """The Subnet ID in which to deploy the instance."""
+
+    @staticmethod
+    def from_inputs(inputs: Inputs) -> 'WpInstanceArgs':
+        return WpInstanceArgs(
+            public_key=inputs['public_key'],
+            instance_type=inputs['instance_type'],
+            vpc_id=inputs['vpc_id'],
+            subnet_id=inputs['subnet_id']
+        )
+
     def __init__(self,
                  # name the arguments and their types (e.g. str, bool, etc)
-                 public_key: str, 
-                 instance_type: str,
-                 vpc_id: str,
-                 subnet_id: str,
-                 parameter2:type):
+                 public_key: pulumi.Input[str], 
+                 instance_type: pulumi.Input[str],
+                 vpc_id: pulumi.Input[str],
+                 subnet_id: pulumi.Input[str]) -> None:
 
         # Set the class args
         self.public_key = public_key
@@ -37,6 +56,7 @@ class WpInstanceArgs:
 
 class WpInstance(pulumi.ComponentResource):
     wpinstance_ip: pulumi.Output[str]
+    secrule_id: pulumi.Output[str]
 
     def __init__(self,
                  name: str,
@@ -113,7 +133,9 @@ class WpInstance(pulumi.ComponentResource):
         wordpress_eip = ec2.Eip("wordpress-eip", instance=wordpress_instance.id)
 
         self.wpinstance_ip = wordpress_eip.public_ip
+        self.secrule_id = ec2_allow_rule.id
                    
         self.register_outputs({
             'wpinstance_ip': self.wpinstance_ip,
+            'secrule_id': self.secrule_id,
         })

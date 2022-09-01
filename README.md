@@ -59,6 +59,7 @@ make generate
 # Build and install the provider and SDKs
 make build
 make install
+### NOTE: After `make install` edit sdk/python/bin/setup.py to match the VERSION you set in the MAKEFILE
 
 # Ensure the pulumi-provider-wpinstance script is on PATH (for testing)
 $ export PATH=$PATH:$PWD/bin
@@ -85,6 +86,7 @@ naming can be custom.
 
 The `wpinstance` plugin can be packaged as a tarball for distribution:
 
+NOTE: Before `make dist` edit sdk/python/bin/setup.py to match the VERSION you set in the MAKEFILE
 ```bash
 $ make dist
 

@@ -13,6 +13,12 @@ namespace Pulumi.Wpinstance.Mlc
     public partial class WpInstance : Pulumi.ComponentResource
     {
         /// <summary>
+        /// Id for instance security group rule.
+        /// </summary>
+        [Output("secruleId")]
+        public Output<string> SecruleId { get; private set; } = null!;
+
+        /// <summary>
         /// The wordpress instance IP address.
         /// </summary>
         [Output("wpinstanceIp")]

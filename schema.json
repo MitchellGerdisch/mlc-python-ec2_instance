@@ -31,10 +31,15 @@
                 "wpinstanceIp": {
                     "type": "string",
                     "description": "The wordpress instance IP address."
+                },
+                "secruleId": {
+                    "type": "string",
+                    "description": "Id for instance security group rule."
                 }
             },
             "required": [
-                "wpinstanceIp"
+                "wpinstanceIp",
+                "secruleId"
             ]
         }
     },

@@ -1,4 +1,4 @@
-VERSION         := 0.0.1
+VERSION         := 0.0.2
 
 PACK            := wpinstance
 PROJECT         := github.com/pulumi/pulumi-${PACK}

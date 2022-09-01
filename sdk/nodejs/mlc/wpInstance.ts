@@ -20,6 +20,10 @@ export class WpInstance extends pulumi.ComponentResource {
     }
 
     /**
+     * Id for instance security group rule.
+     */
+    public /*out*/ readonly secruleId!: pulumi.Output<string>;
+    /**
      * The wordpress instance IP address.
      */
     public /*out*/ readonly wpinstanceIp!: pulumi.Output<string>;
@@ -51,8 +55,10 @@ export class WpInstance extends pulumi.ComponentResource {
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
+            resourceInputs["secruleId"] = undefined /*out*/;
             resourceInputs["wpinstanceIp"] = undefined /*out*/;
         } else {
+            resourceInputs["secruleId"] = undefined /*out*/;
             resourceInputs["wpinstanceIp"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

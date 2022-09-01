@@ -14,6 +14,8 @@ import (
 type WpInstance struct {
 	pulumi.ResourceState
 
+	// Id for instance security group rule.
+	SecruleId pulumi.StringOutput `pulumi:"secruleId"`
 	// The wordpress instance IP address.
 	WpinstanceIp pulumi.StringOutput `pulumi:"wpinstanceIp"`
 }
