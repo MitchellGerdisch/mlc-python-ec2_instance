@@ -33,10 +33,10 @@ class WpInstanceArgs:
     @staticmethod
     def from_inputs(inputs: Inputs) -> 'WpInstanceArgs':
         return WpInstanceArgs(
-            public_key=inputs['public_key'],
-            instance_type=inputs['instance_type'],
-            vpc_id=inputs['vpc_id'],
-            subnet_id=inputs['subnet_id']
+            instance_type=inputs['instanceType'],
+            public_key=inputs['publicKey'],
+            vpc_id=inputs['vpcId'],
+            subnet_id=inputs['subnetId']
         )
 
     def __init__(self,

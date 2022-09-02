@@ -50,5 +50,6 @@ def _deploy_wpinstance(name: str,
     return provider.ConstructResult(
         urn=wpinstance.urn,
         state={
-            'wpinstance_ip': wpinstance.wpinstance_ip
+            'wpinstanceIp': wpinstance.wpinstance_ip,
+            'secruleId': wpinstance.secrule_id,
         })
