@@ -21,8 +21,6 @@ import pulumi
 
 class WpInstanceArgs:
 
-    index_content: pulumi.Input[str]
-    """The HTML content for index.html."""
     public_key: pulumi.Input[str]
     """The public key for accessing the instance."""
     instance_type: pulumi.Input[str]
