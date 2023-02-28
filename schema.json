@@ -1,5 +1,6 @@
 {
     "name": "wpinstance",
+    "version": "0.0.2",
     "resources": {
         "wpinstance:mlc:WpInstance": {
             "isComponent": true,
@@ -59,7 +60,8 @@
                 "@pulumi/aws": "^5.0.0"
             },
             "devDependencies": {
-                "typescript": "^3.7.0"
+                "typescript": "^3.7.0",
+                "@types/node": "18.11.19"
             }
         },
         "python": {
