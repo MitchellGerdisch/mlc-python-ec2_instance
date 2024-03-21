@@ -1,0 +1,15 @@
+README.md
+setup.py
+pulumi_wpinstance/__init__.py
+pulumi_wpinstance/_utilities.py
+pulumi_wpinstance/provider.py
+pulumi_wpinstance/pulumi-plugin.json
+pulumi_wpinstance/py.typed
+pulumi_wpinstance.egg-info/PKG-INFO
+pulumi_wpinstance.egg-info/SOURCES.txt
+pulumi_wpinstance.egg-info/dependency_links.txt
+pulumi_wpinstance.egg-info/not-zip-safe
+pulumi_wpinstance.egg-info/requires.txt
+pulumi_wpinstance.egg-info/top_level.txt
+pulumi_wpinstance/mlc/__init__.py
+pulumi_wpinstance/mlc/wp_instance.py

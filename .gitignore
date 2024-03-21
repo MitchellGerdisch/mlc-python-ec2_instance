@@ -1,7 +1,8 @@
-bin
+**/bin/
+!/sdk/python/** 
 VERSION
 .pulumi
-sdk/**/bin/
+# sdk/**/bin/
 **/obj/
 **/node_modules/
 vendor/

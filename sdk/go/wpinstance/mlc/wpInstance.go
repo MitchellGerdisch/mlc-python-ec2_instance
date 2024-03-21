@@ -96,7 +96,7 @@ func (i *WpInstance) ToWpInstanceOutputWithContext(ctx context.Context) WpInstan
 // WpInstanceArrayInput is an input type that accepts WpInstanceArray and WpInstanceArrayOutput values.
 // You can construct a concrete instance of `WpInstanceArrayInput` via:
 //
-//          WpInstanceArray{ WpInstanceArgs{...} }
+//	WpInstanceArray{ WpInstanceArgs{...} }
 type WpInstanceArrayInput interface {
 	pulumi.Input
 
@@ -121,7 +121,7 @@ func (i WpInstanceArray) ToWpInstanceArrayOutputWithContext(ctx context.Context)
 // WpInstanceMapInput is an input type that accepts WpInstanceMap and WpInstanceMapOutput values.
 // You can construct a concrete instance of `WpInstanceMapInput` via:
 //
-//          WpInstanceMap{ "key": WpInstanceArgs{...} }
+//	WpInstanceMap{ "key": WpInstanceArgs{...} }
 type WpInstanceMapInput interface {
 	pulumi.Input
 

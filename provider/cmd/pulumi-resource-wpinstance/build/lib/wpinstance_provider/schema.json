@@ -1,0 +1,74 @@
+{
+    "name": "wpinstance",
+    "version": "0.0.2",
+    "resources": {
+        "wpinstance:mlc:WpInstance": {
+            "isComponent": true,
+            "inputProperties": {
+                "publicKey": {
+                    "type": "string",
+                    "description": "SSH public key for accessing wordpress instance."
+                },
+                "instanceType": {
+                    "type": "string",
+                    "description": "Instance type to use for wordpress instance."
+                },
+                "vpcId": {
+                    "type": "string",
+                    "description": "VPC in which to deploy."
+                },
+                "subnetId": {
+                    "type": "string",
+                    "description": "Subnet in which to deploy."
+                }
+            },
+            "requiredInputs": [
+                "publicKey", 
+                "instanceType", 
+                "vpcId",
+                "subnetId"
+            ],
+            "properties": {
+                "wpinstanceIp": {
+                    "type": "string",
+                    "description": "The wordpress instance IP address."
+                },
+                "secruleId": {
+                    "type": "string",
+                    "description": "Id for instance security group rule."
+                }
+            },
+            "required": [
+                "wpinstanceIp",
+                "secruleId"
+            ]
+        }
+    },
+    "language": {
+        "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*",
+                "Pulumi.Aws": "5.*"
+            }
+        },
+        "go": {
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-wpinstance/sdk/go/wpinstance"
+        },
+        "nodejs": {
+            "dependencies": {
+                "@pulumi/aws": "^5.0.0"
+            },
+            "devDependencies": {
+                "typescript": "^3.7.0",
+                "@types/node": "18.11.19"
+            }
+        },
+        "python": {
+            "requires": {
+                "pulumi": ">=3.0.0,<4.0.0",
+                "pulumi-aws": ">=5.0.0,<6.0.0"
+            }
+        }
+    }
+}
